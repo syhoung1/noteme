@@ -16,7 +16,10 @@ class Topic(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
 
 class Note(models.Model):
     title = models.CharField(max_length=80)
@@ -33,7 +36,6 @@ class Note(models.Model):
     related_note = models.ManyToManyField(
         'self',
     )
-    user = models.ForeignKey(User)
 
 class Vocab(models.Model):
     word = models.CharField(max_length=50)
@@ -43,4 +45,3 @@ class Vocab(models.Model):
         Topic,
         on_delete = models.CASCADE
     )
-    user = models.ForeignKey(User)

@@ -5,13 +5,17 @@ from .models import *
 
 # Create your views here.
 def home(request):
+    user = User.objects.first()
+    topic = Topic.objects.get(user=User.objects.first())
+    notes = Note.objects.all()
+    vocab = Vocab.objects.filter(topic__user__name="Steven")
     return render(
         request = request,
         template_name = "main/home.html",
         context={
-            "users": Users.objects.all(),
-            "topics": Topics.objects.all(),
-            "notes": Notes.objects.all(),
-            "vocab": Vocab.objects.all()
+            "user": user,
+            "topic": topic,
+            "notes": notes,
+            "vocab": vocab,
         }
     )

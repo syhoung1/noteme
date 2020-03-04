@@ -1,1 +1,32 @@
-Hello world
+{% extends 'main/header.html' %}
+{% block content %}
+  <body class="bg-muted">
+    <div class="container-fluid bg-muted">
+      <div class="row">
+        <div class="col-6 col-md-4 bg-muted">
+          <div class="row">
+            <h4>{{ topic.name }}</h4>
+          </div>
+          <div class="row">
+            <p>{{ topic.description }}</p>
+          </div>
+          <div class="row">
+            {% if vocab %}
+              <ul>
+                {% for word in vocab %}
+                  <li>{{ word.word}}</li>
+                {% endfor %}
+              </ul>
+            {% endif%}
+          </div>
+        </div>
+        <div class="col-6 col-md-8 bg-muted">
+          {% for note in notes %}
+            <h2>{{ note.title }}</h2>
+            <p>{{ note.content }}</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </body>
+{% endblock %}
